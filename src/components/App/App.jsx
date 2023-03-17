@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Header from '../Header/Header.jsx'
 import './App.css';
 import AddItem from '../AddItem/AddItem.jsx'; 
+import DeleteItem from '../DeleteItem/DeleteItem.jsx';
 
 function App() {
     return (
@@ -13,6 +14,7 @@ function App() {
             </main>
             <div>
                 <AddItem />
+                <DeleteItem />
             </div>
         </div>
     );

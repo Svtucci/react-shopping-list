@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import DeleteItem from '../DeleteItem/DeleteItem.jsx';
 
 function AddItem () {
     const [itemName, setItemName] = useState('');
@@ -37,7 +37,33 @@ const fetchAddItem = () => {
             console.log(`Error in POST`)
             alert('Something is wrong in POST');
         })
-    }
+    };
+
+//TEST DELETE FUNCTION
+// function deleteItem(item) 
+// console.log(`In delete function`);
+// axios.delete(`/shoppingList/${index}`).then((response) => {
+//   console.log(response);
+//  AddItem();
+// }).catch((error) =>{```
+//   console.log(error);
+//   alert('Something went wrong');
+// })
+// };
+
+//TEST #2 FOR DELETE FUNCTION 
+// function deleteItem () {
+
+// const fetchdeleteItem = () => {
+//     axios.delete('/shoppingList').then((response) => {
+//         //update the array
+//         setShoppingList(response.data);
+//     }).catch((error) => {
+//         console.log(`Error in GET ${error}`);
+//         alert('Something wrong in GET');
+//     });
+// }
+
 
     return (
         <div>
@@ -70,6 +96,7 @@ const fetchAddItem = () => {
                         // what we want to render
                         <li key={item.id}>
                             Name: {item.name} Quantity: {item.quantity} Unit, {item.unit}
+                            <button onClick={DeleteItem}  > Delete </button>
                         </li>
                     ))
                 }
@@ -79,5 +106,18 @@ const fetchAddItem = () => {
     );
 }
 
-
 export default AddItem;
+
+
+
+// function deleteItem () {
+
+// const fetchdeleteItem = () => {
+//     axios.delete('/shoppingList').then((response) => {
+//         //update the array
+//         setShoppingList(response.data);
+//     }).catch((error) => {
+//         console.log(`Error in GET ${error}`);
+//         alert('Something wrong in GET');
+//     });
+// }
