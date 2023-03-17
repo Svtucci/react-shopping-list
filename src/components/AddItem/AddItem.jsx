@@ -32,6 +32,7 @@ const fetchAddItem = () => {
             setItemName('');
             setItemQuantity('');
             setItemUnit('');
+            fetchAddItem();
         }).catch((error) => {
             console.log(`Error in POST`)
             alert('Something is wrong in POST');
@@ -41,7 +42,7 @@ const fetchAddItem = () => {
     return (
         <div>
             <h2>Add an Item</h2>
-            <form>
+            <form onSubmit={submitForm}>
                 Item:
                 <input type="text"
                        value={itemName}

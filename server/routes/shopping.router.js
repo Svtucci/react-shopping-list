@@ -31,7 +31,7 @@ router.post('/', (req, res) => {
     // console.log('POST REquest made for /');
     // console.log(req.body);
     let itemToAdd = req.body
-    let queryText = `insert into shoppingList ("name", "quantity", "unit")
+    let queryText = `insert into "shoppingList" ("name", "quantity", "unit")
     values ($1, $2, $3);`;
    
     pool.query(queryText,[itemToAdd.name, itemToAdd.quantity, itemToAdd.unit] ).then ((result) => {
@@ -56,7 +56,7 @@ router.put('/:id', (req, res) => {
     });
 });
 
-// DELETE /treatsLIST/<id>
+// DELETE /LIST/<id>
 router.delete( '/:id', (req, res) => {
     const deleteIndex = Number( req.params.id );
     let queryText = `DELETE FROM "shoppingList" WHERE "id" = $1`;
