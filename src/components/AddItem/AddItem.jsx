@@ -24,7 +24,7 @@ function AddItem () {
             console.log(`Error in POST`)
             alert('Something is wrong in POST');
         })
-    };
+    }
 
     
     return (
@@ -56,7 +56,8 @@ function AddItem () {
 
         </div>
     );
-}
+}//end addItem()
+    
 
 export default AddItem;
 

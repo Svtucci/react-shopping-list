@@ -10,6 +10,7 @@ function ShoppingList () {
     const [itemUnit, setItemUnit] = useState('');
     const [shoppingList, setShoppingList] = useState([]);
 
+    //GET
     const fetchAddItem = () => {
         axios.get('/shoppingList').then((response) => {
             //update the array
@@ -19,22 +20,34 @@ function ShoppingList () {
             alert('Something wrong in GET');
         });
     }
-        useEffect(() => {
-            fetchAddItem ();
-        }, []);
+        
+    useEffect(() => {
+    fetchAddItem ();
+    }, []);
+
+    // const submitForm = (e) => {
+    //         e.preventDefault();
+    //         axios.post('/shoppingList', {
+    //             name: itemName,
+    //             quantity: itemQuantity,
+    //             unit: itemUnit ,
+    //         }).then((response) => {
+    //             //clear input fields
+    //             setItemName('');
+    //             setItemQuantity('');
+    //             setItemUnit('');
+    //             fetchAddItem();
+    //         }).catch((error) => {
+    //             console.log(`Error in POST`)
+    //             alert('Something is wrong in POST');
+    //         })
+    //     }
 
     return (
         <>
             <h1>Shopping List</h1> 
             <ul>
-                {
-                    shoppingList.map((item) => (
-                        // what we want to render
-                        <li key={item.id}>
-                            Name: {item.name} <br />
-                            Quantity: {item.quantity}  <br />
-                            Unit: {item.unit} <br />
-                            <AddItem 
+                           <AddItem 
                                 itemId={item.id}
                                 itemName ={itemName}
                                 setItemName = {setItemName}
@@ -44,6 +57,15 @@ function ShoppingList () {
                                 fetchAddItem= {fetchAddItem}
                                 shoppingList= {shoppingList}
                             />
+                {
+                    shoppingList.map((item) => (
+                        // what we want to render
+                        <li key={item.id}>
+                            Name: {item.name} <br />
+                            Quantity: {item.quantity}  <br />
+                            Unit: {item.unit} <br />
+                            
+                        
                             <DeleteItem 
                                 itemId={item.id}
                                 itemName ={itemName}
@@ -60,10 +82,9 @@ function ShoppingList () {
                     ))
                 }
             </ul>
-            
-            
         </>
-
+            
+    
     );
 
 };

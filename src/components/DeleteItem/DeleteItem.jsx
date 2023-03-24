@@ -4,9 +4,9 @@ import AddItem from '../AddItem/AddItem';
 
  
 
-const DeleteItem = ({itemName, setItemName, itemQuantity, setItemQuantity, itemUnit, setItemUnit, fetchAddItem, shoppingList}) => {
+const DeleteItem = ({itemId, itemName, setItemName, itemQuantity, setItemQuantity, itemUnit, setItemUnit, fetchAddItem, shoppingList}) => {
    
-    axios.delete(`/shoppingList/${item.id}`).then((response) => {
+    axios.delete(`/shoppingList/${itemId}`).then((response) => {
         //update the array
         fetchShoppingList();
     }).catch((error) => {
