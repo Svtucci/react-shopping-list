@@ -2,8 +2,7 @@ import React from 'react';
 import { useState } from 'react'; 
 import Header from '../Header/Header.jsx'
 import './App.css';
-import AddItem from '../AddItem/AddItem.jsx'; 
-import DeleteItem from '../DeleteItem/DeleteItem.jsx';
+import ShoppingList from '../ShoppingList/ShoppingList.jsx';
 
 function App() {
     return (
@@ -13,8 +12,7 @@ function App() {
                 <p>Under Construction...</p>
             </main>
             <div>
-                <AddItem />
-                <DeleteItem />
+                <ShoppingList />
             </div>
         </div>
     );
