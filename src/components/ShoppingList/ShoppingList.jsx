@@ -20,11 +20,24 @@ function ShoppingList () {
             alert('Something wrong in GET');
         });
     }
-        
+
+    
+
     useEffect(() => {
     fetchAddItem ();
     }, []);
 
+    //  DELETE
+    const itemDelete = (id) => {
+        axios.delete(`/shoppingList/${id}`).then((response) => {
+            fetchAddItem();
+        }).catch((error) => {
+            console.log(`Error in DELETE ${error}`);
+            alert('Something wrong in DELETE');
+        })
+    }
+
+    
     // const submitForm = (e) => {
     //         e.preventDefault();
     //         axios.post('/shoppingList', {
@@ -57,8 +70,8 @@ function ShoppingList () {
                                 fetchAddItem= {fetchAddItem}
                                 shoppingList= {shoppingList}
                             />
-                {
-                    shoppingList.map((item) => (
+                
+                    {shoppingList.map((item) => (
                         // what we want to render
                         <li key={item.id}>
                             Name: {item.name} <br />
@@ -68,12 +81,8 @@ function ShoppingList () {
                         
                             <DeleteItem 
                                 itemId={item.id}
-                                itemName ={itemName}
-                                setItemName = {setItemName}
-                                itemQuantity = {itemQuantity}
-                                setItemQuantity= {setItemQuantity}
-                                itemUnit= {setItemUnit}
                                 fetchAddItem= {fetchAddItem}
+                                itemDelete={itemDelete}
                             />
                             <button onClick={(e) => DeleteItem(e)}>Delete</button>
                             <p></p>

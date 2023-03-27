@@ -4,9 +4,12 @@ import AddItem from '../AddItem/AddItem';
 
  
 
-const DeleteItem = ({itemId, itemName, setItemName, itemQuantity, setItemQuantity, itemUnit, setItemUnit, fetchAddItem, shoppingList}) => {
-   
-    axios.delete(`/shoppingList/${itemId}`).then((response) => {
+const DeleteItem = ({itemId, fetchAddItem, deleteItem}) => {
+    const handleClick = () => {
+        deleteItem(itemId);
+    }
+
+    axios.delete(`/shoppingList/${id}`).then((response) => {
         //update the array
         fetchShoppingList();
     }).catch((error) => {
@@ -15,22 +18,8 @@ const DeleteItem = ({itemId, itemName, setItemName, itemQuantity, setItemQuantit
     });
 
     return (
-        <ul>
-                {
-                    shoppingList.map((item) => (
-                        // what we want to render
-                        <li key={item.id}>
-                            Name: {item.name} <br />
-                            Quantity: {item.quantity}  <br />
-                            Unit: {item.unit} <br />
-                            <button onClick={(e) => DeleteItem(e)}>Delete</button>
-                            <p></p>
-                        </li>
-                        
-                    ))
-                }
-            </ul>
-    )
+        <button onCLick={handleClick}>Delete</button>
+    );
 
 }
 
@@ -49,3 +38,20 @@ export default DeleteItem ;
 //         alert('Something wrong in GET');
 //     });
 // }
+
+
+// {/* <ul>
+//                 {
+//                     shoppingList.map((item) => (
+//                         // what we want to render
+//                         <li key={item.id}>
+//                             Name: {item.name} <br />
+//                             Quantity: {item.quantity}  <br />
+//                             Unit: {item.unit} <br />
+//                             <button onClick={(e) => DeleteItem(e)}>Delete</button>
+//                             <p></p>
+//                         </li>
+                        
+//                     ))
+//                 }
+// </ul> */}
