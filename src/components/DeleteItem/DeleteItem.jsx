@@ -6,19 +6,22 @@ import AddItem from '../AddItem/AddItem';
 
 const DeleteItem = ({itemId, fetchAddItem, deleteItem}) => {
     const handleClick = () => {
+        console.log(itemId);
         deleteItem(itemId);
     }
 
-    axios.delete(`/shoppingList/${id}`).then((response) => {
+
+
+    axios.delete(`/shoppingList/${itemId}`).then((response) => {
         //update the array
-        fetchShoppingList();
+        fetchAddItem();
     }).catch((error) => {
         console.log(`Error in DELETE ${error}`);
         alert('Something wrong in GET');
     });
 
     return (
-        <button onCLick={handleClick}>Delete</button>
+        <button onClick={handleClick}>Delete</button>
     );
 
 }

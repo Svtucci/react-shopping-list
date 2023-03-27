@@ -5,12 +5,10 @@ const pool = require('../modules/pool.js');
 
 //GET/LIST
 router.get('/', (req, res) => {
-
     console.log('GET Request hello');
     // Send back the list of quotes!
     let queryText = 'SELECT * FROM "shoppingList";';
     pool.query(queryText).then((result) => {
-
        //result.rows is the Array of data from our database
        console.log(result);
        res.send(result.rows);
@@ -31,9 +29,8 @@ router.post('/', (req, res) => {
     // console.log('POST REquest made for /');
     // console.log(req.body);
     let itemToAdd = req.body
-    let queryText = `insert into "shoppingList" ("name", "quantity", "unit")
-    values ($1, $2, $3);`;
-   
+    let queryText = `INSERT INTO "shoppingList" ("name", "quantity", "unit")
+    VALUES ($1, $2, $3);`;
     pool.query(queryText,[itemToAdd.name, itemToAdd.quantity, itemToAdd.unit] ).then ((result) => {
     res.sendStatus(201); 
  }).catch((error) => {

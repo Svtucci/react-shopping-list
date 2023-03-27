@@ -21,8 +21,6 @@ function ShoppingList () {
         });
     }
 
-    
-
     useEffect(() => {
     fetchAddItem ();
     }, []);
@@ -59,18 +57,10 @@ function ShoppingList () {
     return (
         <>
             <h1>Shopping List</h1> 
+            <AddItem />  
+
             <ul>
-                           <AddItem 
-                                itemId={item.id}
-                                itemName ={itemName}
-                                setItemName = {setItemName}
-                                itemQuantity = {itemQuantity}
-                                setItemQuantity= {setItemQuantity}
-                                itemUnit= {itemUnit}
-                                fetchAddItem= {fetchAddItem}
-                                shoppingList= {shoppingList}
-                            />
-                
+                            
                     {shoppingList.map((item) => (
                         // what we want to render
                         <li key={item.id}>
@@ -84,7 +74,7 @@ function ShoppingList () {
                                 fetchAddItem= {fetchAddItem}
                                 itemDelete={itemDelete}
                             />
-                            <button onClick={(e) => DeleteItem(e)}>Delete</button>
+                            <button onClick={(e) =>DeleteItem(e)}>Delete</button>
                             <p></p>
                         </li>
                         

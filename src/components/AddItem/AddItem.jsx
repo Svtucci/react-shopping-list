@@ -13,7 +13,7 @@ function AddItem () {
         axios.post('/shoppingList', {
             name: itemName,
             quantity: itemQuantity,
-            unit: itemUnit ,
+            unit: itemUnit,
         }).then((response) => {
             //clear input fields
             setItemName('');
@@ -30,7 +30,7 @@ function AddItem () {
     return (
         <div>
             <h2>Add an Item</h2>
-            <form onSubmit={submitForm} >
+            <form onSubmit={submitForm}>
                 Item:
                 <input type="text"
                        value={itemName}
