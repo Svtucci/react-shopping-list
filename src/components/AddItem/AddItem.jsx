@@ -8,6 +8,7 @@ function AddItem () {
     const [itemUnit, setItemUnit] = useState('');
     const [shoppingList, setShoppingList] = useState([]);
 
+
     const submitForm = (e) => {
         e.preventDefault();
         axios.post('/shoppingList', {
@@ -19,7 +20,7 @@ function AddItem () {
             setItemName('');
             setItemQuantity('');
             setItemUnit('');
-            fetchAddItem();
+            
         }).catch((error) => {
             console.log(`Error in POST`)
             alert('Something is wrong in POST');

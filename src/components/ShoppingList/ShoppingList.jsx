@@ -35,32 +35,12 @@ function ShoppingList () {
         })
     }
 
-    
-    // const submitForm = (e) => {
-    //         e.preventDefault();
-    //         axios.post('/shoppingList', {
-    //             name: itemName,
-    //             quantity: itemQuantity,
-    //             unit: itemUnit ,
-    //         }).then((response) => {
-    //             //clear input fields
-    //             setItemName('');
-    //             setItemQuantity('');
-    //             setItemUnit('');
-    //             fetchAddItem();
-    //         }).catch((error) => {
-    //             console.log(`Error in POST`)
-    //             alert('Something is wrong in POST');
-    //         })
-    //     }
-
     return (
         <>
             <h1>Shopping List</h1> 
             <AddItem />  
 
-            <ul>
-                            
+            <ul>   
                     {shoppingList.map((item) => (
                         // what we want to render
                         <li key={item.id}>
