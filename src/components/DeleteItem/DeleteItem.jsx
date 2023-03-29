@@ -20,13 +20,15 @@ function DeleteButton ({itemId, fetchAddItem}) {
 
     return (
             
-            <button onClick={() => deleteItem(itemId)}>Delete</button>
+            <button onClick={() => deleteItem(itemId)}>Delete</button>   // () =>  works...if we delete these it wipes the DB
             
     );
 }
 
 
 export default DeleteButton; 
+
+
 
 
 // const deleteItem = (e) => {
