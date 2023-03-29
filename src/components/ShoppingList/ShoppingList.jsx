@@ -5,9 +5,9 @@ import DeleteItem from '../DeleteItem/DeleteItem.jsx';
 
 
 function ShoppingList () {
-    const [itemName, setItemName] = useState('');
-    const [itemQuantity, setItemQuantity] = useState('');
-    const [itemUnit, setItemUnit] = useState('');
+    // const [itemName, setItemName] = useState('');
+    // const [itemQuantity, setItemQuantity] = useState('');
+    // const [itemUnit, setItemUnit] = useState('');
     const [shoppingList, setShoppingList] = useState([]);
 
     //GET
@@ -26,7 +26,7 @@ function ShoppingList () {
     }, []);
 
     //  DELETE
-    const itemDelete = (id) => {
+    const handleDelete = (id) => {
         axios.delete(`/shoppingList/${id}`).then((response) => {
             fetchAddItem();
         }).catch((error) => {
@@ -38,7 +38,9 @@ function ShoppingList () {
     return (
         <>
             <h1>Shopping List</h1> 
-            <AddItem />  
+            <AddItem 
+            fetchAddItem={fetchAddItem}
+            />  
 
             <ul>   
                     {shoppingList.map((item) => (
@@ -52,9 +54,9 @@ function ShoppingList () {
                             <DeleteItem 
                                 itemId={item.id}
                                 fetchAddItem= {fetchAddItem}
-                                itemDelete={itemDelete}
+                                handleDelete={handleDelete}
                             />
-                            <button onClick={(e) =>DeleteItem(e)}>Delete</button>
+                            {/* <button onClick={(e) =>DeleteItem(e)}>Delete</button> */}
                             <p></p>
                         </li>
                         

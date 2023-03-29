@@ -4,10 +4,10 @@ import AddItem from '../AddItem/AddItem';
 
  
 
-const DeleteItem = ({itemId, fetchAddItem, deleteItem}) => {
+const DeleteItem = ({itemId, fetchAddItem, handleDelete}) => {
     const handleClick = () => {
         console.log(itemId);
-        deleteItem(itemId);
+        handleDelete(itemId);
     }
 
 
@@ -21,6 +21,7 @@ const DeleteItem = ({itemId, fetchAddItem, deleteItem}) => {
     });
 
     return (
+        
         <button onClick={handleClick}>Delete</button>
     );
 
