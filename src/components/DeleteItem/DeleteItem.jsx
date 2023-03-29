@@ -2,34 +2,31 @@ import { useState } from 'react';
 import axios from "axios";
 import AddItem from '../AddItem/AddItem';
 
- 
-
-const DeleteItem = ({itemId, fetchAddItem, handleDelete}) => {
-    const handleClick = () => {
-        console.log(itemId);
-        handleDelete(itemId);
+function DeleteButton ({itemId, fetchAddItem}) {
+    
+    const deleteItem = () => {
+        axios.delete(`/shoppingList/${itemId}`).then((response) => {
+            //update the DB
+            console.log('DELETE ITEM')
+        }).catch((error) => {
+            console.log(`Error in DELETE ${error}`);
+            alert('Something wrong in GET');
+        });
+        fetchAddItem(); 
     }
 
+    // REFRESH THE LIST 
 
-
-    axios.delete(`/shoppingList/${itemId}`).then((response) => {
-        //update the array
-        fetchAddItem();
-    }).catch((error) => {
-        console.log(`Error in DELETE ${error}`);
-        alert('Something wrong in GET');
-    });
 
     return (
-        
-        <button onClick={handleClick}>Delete</button>
+            
+            <button onClick={() => deleteItem(itemId)}>Delete</button>
+            
     );
-
 }
 
 
-
-export default DeleteItem ;
+export default DeleteButton; 
 
 
 // const deleteItem = (e) => {

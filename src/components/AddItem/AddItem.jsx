@@ -30,7 +30,6 @@ function AddItem ({fetchAddItem}) {
         })
     }
 
-    
     return (
         <div>
             <h2>Add an Item</h2>

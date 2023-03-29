@@ -1,15 +1,11 @@
 import {useState, useEffect } from 'react';
 import axios from 'axios';
 import AddItem from '../AddItem/AddItem';
-import DeleteItem from '../DeleteItem/DeleteItem.jsx';
+import DeleteButton from '../DeleteItem/DeleteItem.jsx';
 
 
 function ShoppingList () {
-    // const [itemName, setItemName] = useState('');
-    // const [itemQuantity, setItemQuantity] = useState('');
-    // const [itemUnit, setItemUnit] = useState('');
     const [shoppingList, setShoppingList] = useState([]);
-
     //GET
     const fetchAddItem = () => {
         axios.get('/shoppingList').then((response) => {
@@ -24,16 +20,6 @@ function ShoppingList () {
     useEffect(() => {
     fetchAddItem ();
     }, []);
-
-    //  DELETE
-    const handleDelete = (id) => {
-        axios.delete(`/shoppingList/${id}`).then((response) => {
-            fetchAddItem();
-        }).catch((error) => {
-            console.log(`Error in DELETE ${error}`);
-            alert('Something wrong in DELETE');
-        })
-    }
 
     return (
         <>
@@ -51,11 +37,11 @@ function ShoppingList () {
                             Unit: {item.unit} <br />
                             
                         
-                            <DeleteItem 
-                                itemId={item.id}
-                                fetchAddItem= {fetchAddItem}
-                                handleDelete={handleDelete}
+                            <DeleteButton 
+                                fetchAddItem={fetchAddItem}
+                                itemId={item.id}         
                             />
+
                             {/* <button onClick={(e) =>DeleteItem(e)}>Delete</button> */}
                             <p></p>
                         </li>
