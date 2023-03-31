@@ -7,7 +7,7 @@ const pool = require('../modules/pool.js');
 router.get('/', (req, res) => {
     console.log('GET Request hello');
     // Send back the list of quotes!
-    let queryText = 'SELECT * FROM "shoppingList";';
+    let queryText = 'SELECT * FROM "shoppingList" ORDER BY "name" ASC';
     pool.query(queryText).then((result) => {
        //result.rows is the Array of data from our database
        console.log(result);
@@ -22,6 +22,7 @@ router.get('/', (req, res) => {
 // "name" 
 // "quantity" //! These are our SQL values 
 // "unit" 
+// "purchased"
 
 
 // POST /LIST
@@ -29,9 +30,9 @@ router.post('/', (req, res) => {
     // console.log('POST REquest made for /');
     // console.log(req.body);
     let itemToAdd = req.body
-    let queryText = `INSERT INTO "shoppingList" ("name", "quantity", "unit")
+    let queryText = `INSERT INTO "shoppingList" ("name", "quantity", "unit", "purchased";)
     VALUES ($1, $2, $3);`;
-    pool.query(queryText,[itemToAdd.name, itemToAdd.quantity, itemToAdd.unit] ).then ((result) => {
+    pool.query(queryText,[itemToAdd.name, itemToAdd.quantity, itemToAdd.unit, itemToAdd.purchased] ).then ((result) => {
     res.sendStatus(201); 
  }).catch((error) => {
     console.log(`Error in POST ${error}`);
@@ -44,14 +45,19 @@ router.put('/:id', (req, res) => {
     console.log(`In PUT request`);
     let itemId = req.params.id;
     let itemToEdit = req.params.body;
-    let queryText = 'UPDATE "shoppingList" SET "name" = $1, "quantity" = $2, "unit" = $3';
-    pool.query(queryText, [itemToEdit.name, itemToEdit.quantity,itemToEdit.unit]).then ((result) =>{
+    let queryText = 'UPDATE "shoppingList" SET "name" = $1, "quantity" = $2, "unit" = $3 "purchased"= $4';
+    pool.query(queryText, [itemToEdit.name, itemToEdit.quantity, itemToEdit.unit, itemToAdd.purchased]).then ((result) =>{
         res.sendStatus(200);
     }).catch((error) => {
         console.log(`Error in PUT ${error}`);
         res.sendStatus(500);
     });
 });
+
+// PUT to update the database with purchase status?
+
+
+
 
 // DELETE /LIST/<id>
 router.delete( '/:id', (req, res) => {

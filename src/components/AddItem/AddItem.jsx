@@ -9,6 +9,7 @@ function AddItem ({fetchAddItem}) {
     const [itemName, setItemName] = useState('');
     const [itemQuantity, setItemQuantity] = useState('');
     const [itemUnit, setItemUnit] = useState('');
+    const [itemPurchased, setItemPurchased] = useState('');
     const [shoppingList, setShoppingList] = useState([]);
 
 
@@ -18,6 +19,7 @@ function AddItem ({fetchAddItem}) {
             name: itemName,
             quantity: itemQuantity,
             unit: itemUnit,
+            purchased: itemPurchased
         }).then((response) => {
             //clear input fields
             setItemName('');
@@ -27,8 +29,9 @@ function AddItem ({fetchAddItem}) {
         }).catch((error) => {
             console.log(`Error in POST`)
             alert('Something is wrong in POST');
-        })
+        });
     }
+
 
     return (
         <div>
@@ -55,11 +58,10 @@ function AddItem ({fetchAddItem}) {
              <input type="submit" />
             
             </form>
-            
-
         </div>
     );
-}//end addItem()
+}
+//end addItem()
     
 
 export default AddItem;
