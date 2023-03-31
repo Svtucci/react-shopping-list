@@ -51,6 +51,7 @@ router.put('/:id', (req, res) => {
     } else if (req.body.purchased === false) {
         newcompletitionstatus = true
     }
+    
     let queryText = `UPDATE "shoppingList" SET "purchased" = $1 WHERE "id" = $2`
     pool.query(queryText, [newcompletitionstatus, taskUpdate.id]).then ((result) =>{
         res.sendStatus(200);

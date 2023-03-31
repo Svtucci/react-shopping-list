@@ -8,6 +8,8 @@ function PurchasedItem ({item, fetchAddItem, setBackgroundColor}) {
 
     console.log(item)
     
+    //     WE NEED TO SEE IF THIS LOGIC IS CONFLICTING WITH ROUTER LOGIC 
+    //    
     let itemPurchased;
     if (item.purchased === true) {
         itemPurchased = "Yes"
