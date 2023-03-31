@@ -2,11 +2,12 @@ import {useState, useEffect } from 'react';
 import axios from 'axios';
 import AddItem from '../AddItem/AddItem';
 import DeleteButton from '../DeleteItem/DeleteItem.jsx';
+import PurchasedItem from '../PurchasedItem/PurchasedItem';
 
 
 function ShoppingList () {
     const [shoppingList, setShoppingList] = useState([]);
-    
+    const [backgroundColor, setBackgroundColor] = useState('purple')
 
 
     //GET
@@ -24,27 +25,7 @@ function ShoppingList () {
     fetchAddItem ();
     }, []);
 
-    let itemPurchased;
-    if (item.purchased === true) {
-        itemPurchased = "Yes"
-    } else if (item.purchased=== false) {
-         itemPurchased= "No"
-    }; 
-
-    const changeColor = () => {
-    if (item.purchased === "Yes") {
-        return 'green'
-    } else {
-        return 'none'
-    };
-        let toggle
-        if (item.purchased=== true) {
-         toggle= 'no'
-
-    } else if (item.purchased=== false){
-        toggle= 'yes'
-    }
-    }
+ 
 
     return (
         <>
@@ -57,9 +38,8 @@ function ShoppingList () {
             <ul>   
                     {shoppingList.map((item) => (
                         // what we want to render
-                        <li 
-                            style={{backgroundColor: changeColor()}} 
-                            className='changeColor'
+                        <li style={{backgroundColor: backgroundColor}}
+                            
                             key={item.id}>
                             Name: {item.name} <br />
                             Quantity: {item.quantity}  <br />
@@ -70,7 +50,11 @@ function ShoppingList () {
                                 fetchAddItem={fetchAddItem}
                                 itemId={item.id}         
                             />   
-                            
+                            <PurchasedItem 
+                                item={item}  
+                                fetchAddItem={fetchAddItem}
+                                setBackgroundColor={setBackgroundColor}
+                            />
 
 
                         </li>
@@ -87,11 +71,9 @@ function ShoppingList () {
 export default ShoppingList;
 
 
-{/* <li style={{backgroundColor: changeColor()}} className='changeColor'>
-                        <p>{item.name}
-                        {item.quantity}
-                        {item.unit}
-                         {toggle}</p>
-           </li>                  */}
+
 
                             {/* <button onClick={(e) =>DeleteItem(e)}>Delete</button> */}
+
+                            // style={{backgroundColor: changeColor()}} 
+                            // className='changeColor'

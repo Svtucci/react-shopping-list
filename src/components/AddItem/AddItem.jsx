@@ -9,7 +9,7 @@ function AddItem ({fetchAddItem}) {
     const [itemName, setItemName] = useState('');
     const [itemQuantity, setItemQuantity] = useState('');
     const [itemUnit, setItemUnit] = useState('');
-    const [itemPurchased, setItemPurchased] = useState('');
+    const [itemPurchased, setItemPurchased] = useState(false);
     const [shoppingList, setShoppingList] = useState([]);
 
 
@@ -19,7 +19,7 @@ function AddItem ({fetchAddItem}) {
             name: itemName,
             quantity: itemQuantity,
             unit: itemUnit,
-            purchased: itemPurchased
+            purchased: false
         }).then((response) => {
             //clear input fields
             setItemName('');
