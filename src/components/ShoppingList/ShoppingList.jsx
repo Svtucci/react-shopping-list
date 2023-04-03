@@ -50,10 +50,12 @@ function ShoppingList () {
                                 fetchAddItem={fetchAddItem}
                                 itemId={item.id}         
                             />   
+
                             <PurchasedItem 
                                 item={item}  
                                 fetchAddItem={fetchAddItem}
                                 setBackgroundColor={setBackgroundColor}
+
                             />
 
 

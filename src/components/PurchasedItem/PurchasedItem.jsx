@@ -9,7 +9,8 @@ function PurchasedItem ({item, fetchAddItem, setBackgroundColor}) {
     console.log(item)
     
     //     WE NEED TO SEE IF THIS LOGIC IS CONFLICTING WITH ROUTER LOGIC 
-    //    
+    //    I believe this log is somehow interfering with the routing logic
+    // When pressing complete the entire list changes and not just the one being changed. 
     let itemPurchased;
     if (item.purchased === true) {
         itemPurchased = "Yes"
@@ -17,30 +18,27 @@ function PurchasedItem ({item, fetchAddItem, setBackgroundColor}) {
     } else if (item.purchased === false) {
          itemPurchased= "No"
          setBackgroundColor('blue')
-
     }; 
+
+
 
     const changeColor = (item) => {
     console.log(item.id)
     axios.put(`/shoppingList/${item.id}`, item).then((response) => {
         // setItemPurchased(false);
-        fetchAddItem();
+        // fetchAddItem();
     }).catch((error) => {
         console.log(`Error in PUT on PurchasedItem ${error}`);
         alert ('Something is wrong on PurchasedItem');
     })
     } // End changeColor function
 
-
     let toggle
     if (itemPurchased=== true) {
      toggle= 'no'
-
     } else if (item.purchased=== false){
     toggle= 'yes'
     }
-
-
 return(
          <>
         <button onClick = {() => changeColor(item)}> Purchased: </button>
